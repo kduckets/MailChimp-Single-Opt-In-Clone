@@ -29,7 +29,7 @@ server.route({
   method: 'POST',
   path: '/',
   handler: function (request, reply) {
-    var fields = {};
+    var fields = [];
     fields["RSVP"] = request.payload.RSVP;
     fields["NAME"] = request.payload.NAME;
     console.log(JSON.stringify(fields));
