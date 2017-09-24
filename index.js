@@ -11,6 +11,7 @@ server.connection({
   }
 });
 const mailchimp = new Mailchimp(process.env.MAILCHIMP_API_KEY);
+console.log('hello');
 
 server.route({
   method: 'GET',
