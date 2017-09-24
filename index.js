@@ -30,11 +30,13 @@ server.route({
   path: '/',
   handler: function (request, reply) {
     console.log(JSON.stringify(request.payload.NAME));
+    var rsvp = JSON.stringify(request.payload.RSVP);
+    var name = JSON.stringify(request.payload.NAME);
     if (!request.payload.email) return reply({ detail: "Please provide a valid email address." }).code(400);
     if (!request.payload.list_id) return reply({ detail: "no_list_id" }).code(400);
     mailchimp.post(`/lists/${request.payload.list_id}/members`, {
       email_address: request.payload.email,
-      merge_fields: {"RSVP":JSON.stringify(request.payload.RSVP), "NAME":JSON.stringify(request.payload.NAME)},
+      merge_fields: {"RSVP":rsvp, "NAME":name},
       status: 'subscribed'
     }, function(err, results) {
       if (err) {
