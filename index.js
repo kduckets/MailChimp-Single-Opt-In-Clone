@@ -36,7 +36,7 @@ server.route({
     if (!request.payload.list_id) return reply({ detail: "no_list_id" }).code(400);
     mailchimp.post(`/lists/${request.payload.list_id}/members`, {
       email_address: request.payload.email,
-      merge_fields: {"RSVP":rsvp, "NAME":name},
+      merge_fields: {JSON.stringify("RSVP"):rsvp, JSON.stringify("NAME"):name},
       status: 'subscribed'
     }, function(err, results) {
       if (err) {
