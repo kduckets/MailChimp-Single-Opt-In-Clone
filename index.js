@@ -29,9 +29,7 @@ server.route({
   method: 'POST',
   path: '/',
   handler: function (request, reply) {
-    var fields = [];
-    fields["RSVP"] = request.payload.RSVP;
-    fields["NAME"] = request.payload.NAME;
+    var fields = {RSVP:request.payload.RSVP, NAME:request.payload.NAME};
     console.log(JSON.stringify(fields));
     if (!request.payload.email) return reply({ detail: "Please provide a valid email address." }).code(400);
     if (!request.payload.list_id) return reply({ detail: "no_list_id" }).code(400);
